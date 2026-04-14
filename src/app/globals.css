@@ -1,0 +1,217 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --border: #1e1e2e;
+  --jb: #00e5ff;
+  --jb-dim: #003d44;
+  --vellum: #ff6b35;
+  --vellum-dim: #3d1a0d;
+  --text: #e8e8f0;
+  --muted: #6b6b80;
+  --green: #39ff14;
+  --red: #ff1744;
+  --yellow: #ffd60a;
+  --font-body: var(--font-space-mono), monospace;
+  --font-heading: var(--font-dm-serif), serif;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-jb: var(--jb);
+  --color-jb-dim: var(--jb-dim);
+  --color-vellum: var(--vellum);
+  --color-vellum-dim: var(--vellum-dim);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-green: var(--green);
+  --color-red: var(--red);
+  --color-yellow: var(--yellow);
+  --font-body: var(--font-space-mono), monospace;
+  --font-heading: var(--font-dm-serif), serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.3;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.7s ease both;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+.delay-6 { animation-delay: 0.6s; }
+.delay-7 { animation-delay: 0.7s; }
+.delay-8 { animation-delay: 0.8s; }
+
+.pulse-dot {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Syntax highlighting */
+.kw { color: #c792ea; }
+.fn { color: #82aaff; }
+.str { color: #c3e88d; }
+.cm { color: #546e7a; }
+.num { color: #f78c6c; }
+.jb-c { color: var(--jb); }
+.vc { color: var(--vellum); }
+.prop { color: #ffcb6b; }
+
+/* Section number styling */
+.section-num {
+  font-family: var(--font-heading);
+  color: var(--muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* Code blocks */
+pre {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* Table */
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.comparison-table th {
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.comparison-table td:first-child {
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* Feature matrix */
+.feature-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 0;
+  align-items: center;
+}
+
+.feature-row:last-child {
+  border-bottom: none;
+}
+
+/* Win badge */
+.badge-wins {
+  font-size: 0.625rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-jb {
+  background: var(--jb-dim);
+  color: var(--jb);
+}
+
+.badge-vellum {
+  background: var(--vellum-dim);
+  color: var(--vellum);
+}
+
+.badge-tie {
+  background: #1e1e2e;
+  color: var(--muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .grid-2col {
+    grid-template-columns: 1fr !important;
+  }
+  .comparison-table td:first-child,
+  .comparison-table th:first-child {
+    display: none;
+  }
+  .feature-row {
+    grid-template-columns: 1fr 1fr;
+  }
+  .feature-row > :first-child {
+    grid-column: 1 / -1;
+    margin-bottom: 0.25rem;
+  }
+}
